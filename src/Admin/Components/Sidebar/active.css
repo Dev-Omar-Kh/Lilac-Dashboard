@@ -1,6 +1,12 @@
 .active{
 
-    color: var(--dark-color-2);
-    scale: 1.05;
+    background-color: var(--dark-color-1) !important;
+    color: var(--light-color) !important;
+
+}
+
+.active .icons_active{
+
+    color: var(--light-color) !important;
 
 }

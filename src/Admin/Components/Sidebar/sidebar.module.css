@@ -1,0 +1,188 @@
+.container{
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100svh;
+    padding: 10px 1.25%;
+    padding-right: 5px;
+    overflow: hidden;
+    z-index: 100;
+
+}
+
+.side_bar{
+
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--light-color);
+
+}
+
+.logo{
+
+    width: 100%;
+    height: 60px;
+    padding-block: 10px;
+    border-bottom: 1px solid var(--dark-color-2);
+
+}
+
+.logo a{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 25.07px;
+    font-weight: 700;
+    color: var(--dark-color-1);
+
+}
+
+.nav{
+
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 24px 0px;
+    padding-bottom: 0px;
+    overflow: hidden;
+
+}
+
+.nav ul{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+
+}
+
+.nav ul::-webkit-scrollbar{
+
+    display: none;
+
+}
+
+.nav ul a{
+
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--dark-color-1);
+    border-radius: 6px;
+    background-color: var(--dark-color-1-005);
+    transition: 0.3s;
+
+}
+
+nav ul a:hover{
+
+    color: var(--light-color);
+    background-color: var(--dark-color-1);
+
+}
+
+.nav ul a li{
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+}
+
+.nav ul a li i{
+
+    font-size: 18px;
+    color: var(--dark-color-2);
+    transition: 0.3s;
+
+}
+
+nav ul a:hover #i{
+
+    color: var(--light-color);
+
+}
+
+/* ====== responsive-style ====== */
+
+@media(max-width: 1024px){
+
+    .container{
+
+        width: fit-content;
+        width: 93px;
+
+    }
+
+    .nav ul a li{
+
+        justify-content: center;
+
+    }
+
+    .logo a p , .nav ul a span{
+
+        display: none;
+
+    }
+
+}
+
+@media(max-width: 700px){
+
+    .container{
+
+        position: fixed;
+        width: 100%;
+        padding: 0;
+        background-color: var(--dark-color-1-05);
+        transition: 0.3s;
+        opacity: 0;
+        visibility: hidden;
+
+    }
+
+    .container_display{
+
+        opacity: 1;
+        visibility: visible;
+
+    }
+
+    .side_bar{
+
+        width: 250px;
+        border-radius: 0px;
+        transition: 0.3s;
+        transform: translateX(-255px);
+
+    }
+
+    .side_bar_display{
+
+        transform: translateX(0px);
+
+    }
+
+    .nav ul a li{
+
+        justify-content: flex-start;
+
+    }
+
+    .logo a p , .nav ul a span {
+
+        display: inline-block;
+
+    }
+
+}

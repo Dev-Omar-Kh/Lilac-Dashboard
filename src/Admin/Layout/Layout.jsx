@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../Components/Header/Header'
 import SideBar from '../Components/Sidebar/SideBar'
+import Header from '../Components/Header/Header'
+
+import lCSS from './layout.module.css';
 
 export default function Layout() {
 
+    const [showNav, setShowNav] = useState(false);
+
     return <React.Fragment>
 
-        <Header />
+        <div className={lCSS.container}>
 
-        <div className='sidebar_outlet'>
+            <SideBar show={showNav} setShow={setShowNav} />
 
-            <SideBar />
+            <div className={lCSS.page_content}>
 
-            <div className='outlet'>
+                <Header clickNav={setShowNav} />
 
-                <Outlet />
+                <div className={lCSS.outlet}>
+
+                    <div className={lCSS.outlet_cont}>
+
+                        <Outlet />
+
+                    </div>
+
+                </div>
 
             </div>
 

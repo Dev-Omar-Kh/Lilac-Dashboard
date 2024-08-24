@@ -24,7 +24,7 @@ export default function Header({clickNav}) {
 
                 <div className={hCSS.more}>
 
-                    <a href="https://restaurant-app-puce-seven.vercel.app">Go to website</a>
+                    <a href="http://localhost:3000/">Go to website</a>
 
                 </div>
 

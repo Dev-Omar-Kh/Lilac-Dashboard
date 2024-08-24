@@ -38,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    /* gap: 8px; */
 
 }
 
@@ -105,7 +105,7 @@ nav ul a:hover{
 .nav ul a li i{
 
     font-size: 18px;
-    color: var(--dark-color-1);
+    color: var(--black-color-1);
     transition: 0.3s;
 
 }

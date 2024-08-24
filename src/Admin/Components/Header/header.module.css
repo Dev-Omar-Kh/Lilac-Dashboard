@@ -41,6 +41,7 @@
     width: 30%;
     height: 40px;
     padding: 5px 10px;
+    padding-right: 5px !important;
     display: flex;
     align-items: center;
     justify-content: space-between;

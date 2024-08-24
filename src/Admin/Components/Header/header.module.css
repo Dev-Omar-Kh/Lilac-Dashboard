@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center;
     font-size: 25px;
-    color: var(--dark-color-2);
+    color: var(--dark-color-1);
     border-radius: 25px;
     display: none;
 
@@ -45,8 +45,8 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 25px;
-    border: 1px solid transparent;
-    background-color: var(--dark-color-1-005);
+    border: 1px solid var(--dark-color-1);
+    background-color: transparent;
     transition: 0.3s;
 
 }
@@ -66,7 +66,6 @@
 
 .form:focus-within{
 
-    border-color: var(--dark-color-1) !important;
     scale: 1.02;
 
 }
@@ -84,7 +83,7 @@
     height: 100%;
     border: none;
     border-radius: 25px;
-    background-color: var(--dark-color-2);
+    background-color: var(--dark-color-1);
     color: var(--light-color);
     cursor: pointer;
 
@@ -99,9 +98,9 @@
     justify-content: center;
     font-size: 16px;
     font-weight: 500;
-    color: var(--dark-color-2);
+    color: var(--dark-color-1);
     border-radius: 25px;
-    border: 1px solid var(--dark-color-2);
+    border: 1px solid var(--dark-color-1);
     transition: 0.3s;
 
 }

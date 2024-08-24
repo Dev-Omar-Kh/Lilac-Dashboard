@@ -15,15 +15,17 @@
 
 :root {
 
-  --light-color: #F1FAEE;
-  --dark-color-1: #1D3557;
-  --dark-color-2: #E63946;
+  --black-color: #000;
+  --white-color: #fff;
+  --light-color: #e4ece0;
+  --dark-color-1: #b69736;
+  --dark-color-2: #d2ddbf;
 
   /* === custom-colors === */
 
-  --dark-color-1-01: rgba(29, 53, 87, 0.1);
-  --dark-color-1-05: rgba(29, 53, 87, 0.5);
-  --dark-color-1-005: rgba(29, 53, 87, 0.05);
+  --dark-color-1-01: rgba(182, 151, 54, 0.1);
+  --dark-color-1-05: rgba(182, 151, 54, 0.5);
+  --dark-color-1-005: rgba(182, 151, 54, 0.05);
 
 }
 

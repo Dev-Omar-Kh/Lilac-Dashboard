@@ -25,7 +25,7 @@
 .logo{
 
     width: 100%;
-    height: 60px;
+    height: 100px;
     padding-block: 10px;
     border-bottom: 1px solid var(--dark-color-2);
 
@@ -33,20 +33,25 @@
 
 .logo a{
 
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-size: 25.07px;
-    font-weight: 700;
-    color: var(--dark-color-1);
+
+}
+
+.logo a img{
+
+    height: 100% !important;
 
 }
 
 .nav{
 
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 100px);
     padding: 24px 0px;
     padding-bottom: 0px;
     overflow: hidden;
@@ -78,7 +83,6 @@
     font-weight: 500;
     color: var(--dark-color-1);
     border-radius: 6px;
-    background-color: var(--dark-color-1-005);
     transition: 0.3s;
 
 }
@@ -101,7 +105,7 @@ nav ul a:hover{
 .nav ul a li i{
 
     font-size: 18px;
-    color: var(--dark-color-2);
+    color: var(--dark-color-1);
     transition: 0.3s;
 
 }

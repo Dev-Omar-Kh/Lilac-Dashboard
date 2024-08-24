@@ -1,12 +1,12 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './Admin/Layout/Layout';
+import LayoutAdmin from './Admin/Layout/LayoutAdmin';
 
 import './App.css';
 
 const routes = createBrowserRouter([
 
-  {path : '/' , element : <Layout />}
+  {path : '/' , element : <LayoutAdmin />}
 
 ])
 

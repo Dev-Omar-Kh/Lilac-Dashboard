@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LayoutAdmin from './Admin/Layout/LayoutAdmin';
+import LayoutAdmin from './Layout/LayoutAdmin';
 
 import './App.css';
 

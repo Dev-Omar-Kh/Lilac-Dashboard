@@ -107,7 +107,7 @@
 
 .more a:hover{
 
-    background-color: var(--dark-color-2);
+    background-color: var(--dark-color-1);
     color: var(--light-color);
 
 }

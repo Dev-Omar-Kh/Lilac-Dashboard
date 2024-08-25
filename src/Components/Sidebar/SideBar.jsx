@@ -92,7 +92,7 @@ export default function SideBar({show , setShow}) {
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/msgs'}>
+                        <NavLink to={'/contact'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-regular fa-comments"></i>
                                 <span>Contact us</span>

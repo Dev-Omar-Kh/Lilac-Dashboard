@@ -55,6 +55,20 @@
 
 }
 
+.input_cont label span{
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.input_cont label span i{
+
+    font-size: 13px;
+
+}
+
 .err_msg_label{
 
     font-size: 11px;

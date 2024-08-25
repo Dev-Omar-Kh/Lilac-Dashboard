@@ -49,7 +49,7 @@ export default function SideBar({show , setShow}) {
 
                 <div className={sbCSS.logo}>
 
-                    <Link to={'/services'}>
+                    <Link to={'/dashboard/services'}>
 
                         {isLoading? <ThreeCircles
                             visible={true} height="20" width="20" color="var(--dark-color-1)"
@@ -64,35 +64,35 @@ export default function SideBar({show , setShow}) {
 
                     <ul>
 
-                        <NavLink to={'/services'}>
+                        <NavLink to={'/dashboard/services'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-cubes"></i>
                                 <span>Services</span>
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/products'}>
+                        <NavLink to={'/dashboard/products'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-basket-shopping"></i>
                                 <span>Products</span>
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/content'}>
+                        <NavLink to={'/dashboard/content'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-align-left"></i>
                                 <span>Content</span>
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/about'}>
+                        <NavLink to={'/dashboard/about'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-square-poll-horizontal"></i>
                                 <span>About Us</span>
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/contact'}>
+                        <NavLink to={'/dashboard/contact'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-regular fa-comments"></i>
                                 <span>Contact us</span>

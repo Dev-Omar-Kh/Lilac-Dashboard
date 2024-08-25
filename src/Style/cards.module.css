@@ -107,6 +107,7 @@
     transform: translate(-50% , -50%);
     font-size: 50px;
     color: var(--dark-color-2);
+    cursor: pointer;
 
 }
 

@@ -22,7 +22,7 @@ export default function ProCont() {
     return <React.Fragment>
 
         <div className={proCSS.add_pro}>
-            <Link to={'/products/add'}>
+            <Link to={'add'}>
                 <motion.button whileTap={{scale : 0.95}}><i className="fa-solid fa-plus"></i> Add product</motion.button>
             </Link>
         </div>

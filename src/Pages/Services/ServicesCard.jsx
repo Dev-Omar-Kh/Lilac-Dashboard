@@ -11,7 +11,7 @@ export default function ServicesCard({data , refetch}) {
 
     const goToUpdate = () => {
 
-        navigate(`/services/update/${data._id}`);
+        navigate(`update/${data._id}`);
 
     }
 

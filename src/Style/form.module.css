@@ -361,6 +361,8 @@
     border: 2px dashed;
     gap: 5px;
     cursor: pointer;
+    border-color: var(--dark-color-1) !important;
+    color: var(--dark-color-1) !important;
 
 }
 
@@ -419,6 +421,12 @@
     .img_view , .input_img{
 
         min-width: 100% !important;
+
+    }
+
+    .err_msg_label{
+
+        font-size: 9px;
 
     }
 

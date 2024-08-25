@@ -5,8 +5,6 @@ import Auth from './Pages/Auth/Auth';
 import Password from './Pages/Auth/Password';
 import Login from './Pages/Auth/Login';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
-import './App.css';
 import Products from './Pages/Products/Products';
 import ProCont from './Pages/Products/ProCont';
 import AddPro from './Pages/Products/AddPro';
@@ -19,38 +17,41 @@ import Content from './Pages/Content/Content';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
 
+import './App.css';
+import OwnerRoute from './Protected-Route/OwnerRoute';
+
 const routes = createBrowserRouter([
 
-  {path : '/auth' , element : <Auth /> , children : [
+  {path : '/' , element : <Auth /> , children : [
 
-    {path : '/auth/password' , element : <Password />},
-    {path : '/auth/login' , element : <Login />},
+    {path : '/' , element : <Password />},
+    {path : '/login' , element : <Login />},
 
   ]},
 
-  {path : '/' , element : <LayoutAdmin /> , children : [
+  {path : '/dashboard' , element : <OwnerRoute><LayoutAdmin /></OwnerRoute> , children : [
 
-    {path : '/services' , element : <Services /> , children : [
+    {path : '/dashboard/services' , element : <Services /> , children : [
 
-      {path : '/services' , element : <ServicesCont />},
-      {path : '/services/add' , element : <AddService />},
-      {path : '/services/update/:id' , element : <UpdateService />},
-
-    ]},
-
-    {path : '/products' , element : <Products /> , children : [
-
-      {path : '/products/' , element : <ProCont />},
-      {path : '/products/add' , element : <AddPro />},
-      {path : '/products/update/:id' , element : <UpdatePro />},
+      {path : '/dashboard/services' , element : <ServicesCont />},
+      {path : '/dashboard/services/add' , element : <AddService />},
+      {path : '/dashboard/services/update/:id' , element : <UpdateService />},
 
     ]},
 
-    {path : '/content' , element : <Content />},
+    {path : '/dashboard/products' , element : <Products /> , children : [
 
-    {path : '/about' , element : <About />},
+      {path : '/dashboard/products/' , element : <ProCont />},
+      {path : '/dashboard/products/add' , element : <AddPro />},
+      {path : '/dashboard/products/update/:id' , element : <UpdatePro />},
 
-    {path : '/contact' , element : <Contact />},
+    ]},
+
+    {path : '/dashboard/content' , element : <Content />},
+
+    {path : '/dashboard/about' , element : <About />},
+
+    {path : '/dashboard/contact' , element : <Contact />},
 
   ]}
 

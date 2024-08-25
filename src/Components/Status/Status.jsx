@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 const congIcon = require('../../Images/JSON/true.json');
 const wrongIcon = require('../../Images/JSON/wrong.json');
 
-export default function Status({icon , data , isVisible , visibility}) {
+export default function Status({icon , data , isVisible , visibility , color}) {
 
     // ====== display-icon ====== //
 
@@ -79,6 +79,7 @@ export default function Status({icon , data , isVisible , visibility}) {
                     variants={parentVariants}
                     initial='hidden' animate='visible' transition='transition' exit='hidden'
                     id='container' className={sCSS.container}
+                    style={color ? {backgroundColor : color} : {}}
                 >
 
                     <motion.div variants={childVariants} className={sCSS.status_box}>

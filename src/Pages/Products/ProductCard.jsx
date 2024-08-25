@@ -11,7 +11,7 @@ export default function ProductCard({data , refetch}) {
 
     const goToUpdate = () => {
 
-        navigate(`/products/update/${data.id}`);
+        navigate(`update/${data.id}`);
 
     }
 

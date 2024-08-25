@@ -38,7 +38,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* gap: 8px; */
 
 }
 
@@ -127,6 +126,18 @@ nav ul a:hover #i{
 
     }
 
+    .logo{
+
+        height: 70px;
+
+    }
+
+    .nav{
+
+        height: calc(100% - 70px);
+
+    }
+
     .nav ul a li{
 
         justify-content: center;
@@ -174,6 +185,18 @@ nav ul a:hover #i{
     .side_bar_display{
 
         transform: translateX(0px);
+
+    }
+
+    .logo{
+
+        height: 100px;
+
+    }
+
+    .nav{
+
+        height: calc(100% - 100px);
 
     }
 

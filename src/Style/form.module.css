@@ -1,0 +1,382 @@
+.form{
+
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 10px;
+    color: var(--dark-color-1);
+
+}
+
+.msg_cont{
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.err_msg {
+
+    width: fit-content;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-color-2);
+    border-radius: 5px;
+    background-color: var(--dark-color-1-01);
+
+}
+
+.input_cont {
+
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.half_input_cont{
+
+    width: calc(50% - 5px);
+
+}
+
+.input_cont label , .times_header{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.err_msg_label{
+
+    font-size: 11px;
+    color: var(--dark-color-2);
+
+}
+
+.input_cont input , .fake_input{
+
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    padding-right: 40px;
+    font-size: 16px;
+    color: var(--dark-color-1);
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--dark-color-1);
+    background-color: transparent;
+    transition: 0.3s;
+
+}
+
+.input_cont input::placeholder , .time_box input::placeholder {
+
+    color: var(--dark-color-1);
+    opacity: 0.5;
+
+}
+
+.loader {
+
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    width: 20px;
+    height: 10px;
+    background: linear-gradient(var(--dark-color-1) calc(1 * 100% / 6),
+            transparent 0 calc(3 * 100% / 6),
+            var(--dark-color-1) 0),
+        linear-gradient(var(--dark-color-1) calc(2 * 100% / 6),
+            transparent 0 calc(4 * 100% / 6),
+            var(--dark-color-1) 0),
+        linear-gradient(var(--dark-color-1) calc(3 * 100% / 6),
+            transparent 0 calc(5 * 100% / 6),
+            var(--dark-color-1) 0);
+    background-size: 5px 400%;
+    background-repeat: no-repeat;
+    animation: matrix 1s infinite linear;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+
+}
+
+@keyframes matrix {
+    0% {
+        background-position: 0% 100%, 50% 100%, 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%, 50% 0%, 100% 0%;
+    }
+}
+
+.input_cont:focus-within .loader {
+
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.eye_cont {
+
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.eyes {
+
+    position: relative;
+    width: 20px;
+    height: 20px;
+
+}
+
+.eyes .icon_cont {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+}
+
+.eyes .icon_cont img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.times{
+
+    width: calc(50% - 5px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.time_box{
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.time_box:nth-child(2){
+
+    margin-bottom: 10px;
+
+}
+
+.time_box span{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+
+}
+
+.time_box input {
+
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--dark-color-1);
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--dark-color-1);
+    background-color: transparent;
+    transition: 0.3s;
+
+}
+
+.times h3 , .input_cont label{
+
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--dark-color-1);
+
+}
+
+.btn_cont{
+
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+.btn_cont button{
+
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 18px;
+    color: var(--light-color);
+    border: none;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: var(--dark-color-2);
+    cursor: pointer;
+
+}
+
+.submit{
+
+    background-color: var(--dark-color-1) !important;
+
+}
+
+.input_img_cont{
+
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.img_view , .input_img{
+
+    width: 300px;
+    max-width: calc(50% - 15px);
+    height: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+.img_view{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px var(--dark-color-1-01);
+
+}
+
+.input_img{
+
+    border: 2px dashed var(--dark-color-2);
+
+}
+
+.img_view img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.input_img label{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--dark-color-2);
+
+}
+
+.input_img label input{
+
+    display: none;
+
+}
+
+.input_img label p{
+
+    font-size: 20px;
+
+}
+
+.input_images{
+
+    width: 100%;
+
+}
+
+.input_images input {
+
+    display: none;
+
+}
+
+.fake_input{
+
+    padding: 30px 0px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 2px dashed;
+    gap: 5px;
+    cursor: pointer;
+
+}
+
+/* ====== responsive-style ======  */
+
+@media(max-width: 700px){
+
+    .times , .half_input_cont{
+
+        width: 100%;
+
+    }
+
+}
+
+@media(max-width: 445px){
+
+    .img_view , .input_img{
+
+        min-width: 100% !important;
+
+    }
+
+    .err_msg{
+
+        font-size: 12px;
+
+    }
+
+    .btn_cont button{
+
+        width: 100%;
+
+    }
+
+}

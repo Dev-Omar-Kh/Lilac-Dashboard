@@ -50,11 +50,40 @@ export default function SideBar({show , setShow}) {
 
                     <ul>
 
-                        <NavLink to={'/'}><li><i id={sbCSS.i} className="icons_active fa-solid fa-cubes"></i><span>Services</span></li></NavLink>
-                        <NavLink to={'/products'}><li><i id={sbCSS.i} className="icons_active fa-solid fa-basket-shopping"></i><span>Products</span></li></NavLink>
-                        <NavLink to={'/main'}><li><i id={sbCSS.i} className="icons_active fa-solid fa-align-left"></i><span>Content</span></li></NavLink>
-                        <NavLink to={'/who'}><li><i id={sbCSS.i} className="icons_active fa-solid fa-square-poll-horizontal"></i><span>About Us</span></li></NavLink>
-                        <NavLink to={'/msgs'}><li><i id={sbCSS.i} className="icons_active fa-regular fa-comments"></i><span>Contact us</span></li></NavLink>
+                        <NavLink to={'/'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-solid fa-cubes"></i>
+                                <span>Services</span>
+                            </li>
+                        </NavLink>
+
+                        <NavLink to={'/products'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-solid fa-basket-shopping"></i>
+                                <span>Products</span>
+                            </li>
+                        </NavLink>
+
+                        <NavLink to={'/main'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-solid fa-align-left"></i>
+                                <span>Content</span>
+                            </li>
+                        </NavLink>
+
+                        <NavLink to={'/who'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-solid fa-square-poll-horizontal"></i>
+                                <span>About Us</span>
+                            </li>
+                        </NavLink>
+
+                        <NavLink to={'/msgs'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-regular fa-comments"></i>
+                                <span>Contact us</span>
+                            </li>
+                        </NavLink>
 
                     </ul>
 

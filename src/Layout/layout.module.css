@@ -32,6 +32,21 @@
     padding: 10px 1.25%;
     border-radius: 6px;
     background-color: var(--light-color);
+    overflow: hidden;
+
+}
+
+.outlet_cont_scroll {
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+}
+
+.outlet_cont_scroll::-webkit-scrollbar{
+
+    display: none;
 
 }
 

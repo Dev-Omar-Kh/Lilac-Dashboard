@@ -1,0 +1,43 @@
+.container {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.title {
+
+    display: inline-block;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark-color-1);
+    border-bottom: 3px solid var(--dark-color-2);
+
+}
+
+.title i {
+    margin-right: 10px;
+}
+
+.loading{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+@media(max-width: 423px){
+
+    .title {
+    
+        padding: 10px;
+        font-size: 22px;
+
+    }
+
+}

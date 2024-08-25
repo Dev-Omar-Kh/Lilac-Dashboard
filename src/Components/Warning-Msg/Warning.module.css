@@ -1,0 +1,91 @@
+.container{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 102;
+    background-color: var(--dark-color-1-05);
+
+}
+
+.msg_box{
+
+    max-width: 80%;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: var(--light-color);
+
+}
+
+.msg_box h3{
+
+    padding-bottom: 15px;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--dark-color-1);
+    border-bottom: 1px solid var(--dark-color-2);
+
+}
+
+.msg_box p{
+
+    padding: 15px 5px;
+    font-size: 16px;
+    color: var(--dark-color-1);
+    border-bottom: 1px solid var(--dark-color-2);
+
+}
+
+.msg_box p span{
+
+    font-weight: 500;
+    color: var(--black-color);
+
+}
+
+.action{
+
+    width: 100%;
+    padding: 15px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+}
+
+.action button{
+
+    padding: 5px 15px;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+.cancel{
+
+    color: var(--white-color);
+    border: 1px solid var(--dark-color-1);
+    background-color: var(--dark-color-1) !important;
+
+}
+
+.ban{
+
+    color: var(--dark-color-1);
+    border: 1px solid var(--dark-color-1);
+
+}
+
+.ban i{
+
+    margin-right: 3px;
+
+}

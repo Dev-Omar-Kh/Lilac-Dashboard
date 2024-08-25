@@ -1,0 +1,186 @@
+.pro_cont{
+
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.add_pro{
+
+    width: 100%;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: end;
+
+}
+
+.add_pro button{
+
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white-color);
+    border: none;
+    border-radius: 6px;
+    background-color: var(--dark-color-1);
+    cursor: pointer;
+
+}
+
+.card{
+
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-block: 1px solid var(--dark-color-2);
+
+}
+
+.actions{
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+
+}
+
+.actions button{
+
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    color: var(--dark-color-1);
+    background-color: var(--dark-color-2);
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+.images{
+
+    width: 20%;
+
+}
+
+.sub_images{
+
+    width: 100%;
+    height: 205px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+}
+
+.sub_images img{
+
+    width: calc(50% - 2.5px);
+    height: calc(50% - 2.5px);
+    border-radius: 6px;
+    object-fit: cover;
+
+}
+
+.details{
+
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.pro_title{
+
+    display: inline-block;
+    padding: 5px;
+    padding-left: 0px !important;
+    height: fit-content;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark-color-1);
+    white-space: nowrap;
+
+}
+
+.pro_det{
+
+    font-size: 16px;
+    color: var(--black-color);
+
+}
+
+/* ====== responsive-style ====== */
+
+@media(max-width: 1118px){
+
+    .images{
+
+        width: 30%;
+
+    }
+
+    .details{
+
+        width: 57%;
+
+    }
+
+}
+
+@media(max-width: 815px){
+
+    .card{
+
+        width: calc(50% - 10px);
+        flex-direction: column !important;
+        border-radius: 6px;
+        border: 1px solid var(--dark-color-2);
+
+    }
+
+    .actions{
+
+        top: 10px;
+        right: 10px;
+
+    }
+
+    .images {
+
+        width: 100%;
+
+    }
+
+    .sub_images{
+
+        height: 205px !important;
+
+    }
+
+    .details {
+
+        width: 100%;
+
+    }
+
+}
+
+@media(max-width: 507px){
+
+    .card{
+
+        width: 100%;
+
+    }
+
+}

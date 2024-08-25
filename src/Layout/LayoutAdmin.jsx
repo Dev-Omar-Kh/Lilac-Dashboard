@@ -23,7 +23,11 @@ export default function Layout() {
 
                     <div className={lCSS.outlet_cont}>
 
-                        <Outlet />
+                        <div className={lCSS.outlet_cont_scroll}>
+
+                            <Outlet />
+
+                        </div>
 
                     </div>
 

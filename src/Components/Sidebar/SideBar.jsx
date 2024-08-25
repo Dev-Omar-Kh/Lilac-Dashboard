@@ -3,10 +3,21 @@ import { Link, NavLink } from 'react-router-dom';
 
 import sbCSS from './sidebar.module.css';
 import './active.css'
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export default function SideBar({show , setShow}) {
 
-    // console.log(show);
+    // ====== get-logo ====== //
+
+    const getLogo = async() => {
+
+        return await axios.get("https://lilac-backend.vercel.app/content/logo");
+
+    }
+
+    const {data , isLoading} = useQuery('getLogo' , getLogo);
 
     useEffect(() => {
 
@@ -40,7 +51,10 @@ export default function SideBar({show , setShow}) {
 
                     <Link to={'/'}>
 
-                        <img src={require('../../Images/logo.png')} alt="" />
+                        {isLoading? <ThreeCircles
+                            visible={true} height="20" width="20" color="var(--dark-color-1)"
+                            ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
+                        /> : <img src={data.data.data.url} alt="" />}
 
                     </Link>
 
@@ -64,7 +78,7 @@ export default function SideBar({show , setShow}) {
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/main'}>
+                        <NavLink to={'/content'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-align-left"></i>
                                 <span>Content</span>

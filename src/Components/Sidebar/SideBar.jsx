@@ -49,7 +49,7 @@ export default function SideBar({show , setShow}) {
 
                 <div className={sbCSS.logo}>
 
-                    <Link to={'/'}>
+                    <Link to={'/services'}>
 
                         {isLoading? <ThreeCircles
                             visible={true} height="20" width="20" color="var(--dark-color-1)"
@@ -85,7 +85,7 @@ export default function SideBar({show , setShow}) {
                             </li>
                         </NavLink>
 
-                        <NavLink to={'/who'}>
+                        <NavLink to={'/about'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-square-poll-horizontal"></i>
                                 <span>About Us</span>

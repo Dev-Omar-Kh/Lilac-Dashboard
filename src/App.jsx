@@ -16,6 +16,7 @@ import ServicesCont from './Pages/Services/ServicesCont';
 import AddService from './Pages/Services/AddService';
 import UpdateService from './Pages/Services/UpdateService';
 import Content from './Pages/Content/Content';
+import About from './Pages/About/About';
 
 const routes = createBrowserRouter([
 
@@ -45,6 +46,8 @@ const routes = createBrowserRouter([
     ]},
 
     {path : '/content' , element : <Content />},
+
+    {path : '/about' , element : <About />},
 
   ]}
 

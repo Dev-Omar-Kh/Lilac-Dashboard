@@ -44,9 +44,6 @@ export default function UpdatePro() {
 
     };
 
-    console.log(data?.data.result[0].image);
-    
-
     const addProduct = async(values) => {
 
         setUpdateLoading(true);

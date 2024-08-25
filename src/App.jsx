@@ -11,6 +11,10 @@ import Products from './Pages/Products/Products';
 import ProCont from './Pages/Products/ProCont';
 import AddPro from './Pages/Products/AddPro';
 import UpdatePro from './Pages/Products/UpdatePro';
+import Services from './Pages/Services/Services';
+import ServicesCont from './Pages/Services/ServicesCont';
+import AddService from './Pages/Services/AddService';
+import UpdateService from './Pages/Services/UpdateService';
 
 const routes = createBrowserRouter([
 
@@ -22,6 +26,14 @@ const routes = createBrowserRouter([
   ]},
 
   {path : '/' , element : <LayoutAdmin /> , children : [
+
+    {path : '/services' , element : <Services /> , children : [
+
+      {path : '/services' , element : <ServicesCont />},
+      {path : '/services/add' , element : <AddService />},
+      {path : '/services/update/:id' , element : <UpdateService />},
+
+    ]},
 
     {path : '/products' , element : <Products /> , children : [
 

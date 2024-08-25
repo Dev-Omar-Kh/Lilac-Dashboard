@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function DelMsg({userData , ban , setBan , rerender , setSuccessMsg , setErrMsg}) {
+export default function DelMsg({endPoint , userData , ban , setBan , rerender , setSuccessMsg , setErrMsg}) {
 
     // ====== handel-delete-user ====== //
 
@@ -15,7 +15,7 @@ export default function DelMsg({userData , ban , setBan , rerender , setSuccessM
 
         setIsLoading(true);
 
-        const {data} = await axios.delete(`https://lilac-backend.vercel.app/product/deleteProduct/${userData._id}`);
+        const {data} = await axios.delete(`https://lilac-backend.vercel.app/${endPoint}/${userData._id}`);
 
         if(data.success){
 
@@ -62,10 +62,6 @@ export default function DelMsg({userData , ban , setBan , rerender , setSuccessM
 
     }
 
-    if(userData){
-        console.log(userData);
-    }
-
     return <React.Fragment>
 
         <AnimatePresence>
@@ -90,7 +86,7 @@ export default function DelMsg({userData , ban , setBan , rerender , setSuccessM
                             <motion.button onClick={handelDeleteUser} whileTap={{scale : 0.9}} className={wCSS.ban}>
                                 {isLoading ?
                                     <ThreeCircles
-                                        visible={true} height="20" width="20" color="#E63946"
+                                        visible={true} height="20" width="20" color="var(--dark-color-1)"
                                         ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
                                     />
                                     :

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WarnMsg from '../../Components/Warning-Msg/WarnMsg'
 
-import cProCSS from './products.module.css';
+import cProCSS from '../../Style/cards.module.css';
 import { useNavigate } from 'react-router-dom';
 import Status from './../../Components/Status/Status';
 
@@ -22,6 +22,7 @@ export default function ProductCard({data , refetch}) {
     const [successMsg, setSuccessMsg] = useState(null);
     const [errMsg, setErrMsg] = useState(null);
     const [visible, setVisible] = useState(true);
+    const [endPoint, setEndPoint] = useState(null);
 
     const handelBan = (data) => {
 
@@ -29,6 +30,7 @@ export default function ProductCard({data , refetch}) {
         setErrMsg(null);
         setBanMsg(true);
         setUserData(data);
+        setEndPoint('product/deleteProduct')
 
     }
 
@@ -39,7 +41,7 @@ export default function ProductCard({data , refetch}) {
         <WarnMsg
             setErrMsg={setErrMsg} setSuccessMsg={setSuccessMsg} 
             rerender={refetch} userData={userData} ban={banMsg} 
-            setBan={setBanMsg} 
+            setBan={setBanMsg} endPoint={endPoint}
         />
 
         <div className={cProCSS.card}>
@@ -64,7 +66,7 @@ export default function ProductCard({data , refetch}) {
             <div className={cProCSS.details}>
 
                 <div className={cProCSS.det_box}>
-                    <p className={cProCSS.pro_title}>Lorem :</p> 
+                    <p className={cProCSS.pro_title}>Name :</p> 
                     {data.name}
                 </div>
 

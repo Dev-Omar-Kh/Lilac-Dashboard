@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { ThreeCircles } from 'react-loader-spinner';
 
 import localCSS from '../../Style/Local-style.module.css';
-import proCSS from './products.module.css';
+import proCSS from '../../Style/cards.module.css';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 

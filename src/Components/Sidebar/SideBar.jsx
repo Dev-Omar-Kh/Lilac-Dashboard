@@ -50,7 +50,7 @@ export default function SideBar({show , setShow}) {
 
                     <ul>
 
-                        <NavLink to={'/'}>
+                        <NavLink to={'/services'}>
                             <li>
                                 <i id={sbCSS.i} className="icons_active fa-solid fa-cubes"></i>
                                 <span>Services</span>

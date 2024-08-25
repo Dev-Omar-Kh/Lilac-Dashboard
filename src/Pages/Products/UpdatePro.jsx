@@ -7,7 +7,7 @@ import { ThreeCircles } from 'react-loader-spinner';
 
 import formCSS from '../../Style/form.module.css';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UpdatePro() {
 
@@ -25,10 +25,14 @@ export default function UpdatePro() {
 
     // ====== update-product ====== //
 
+    const [imgError, setImgError] = useState(null)
     const [errMsg, setErrMsg] = useState(null);
     const [visible, setVisible] = useState(true);
     const [successMsg, setSuccessMsg] = useState(null);
     const [updateLoading, setUpdateLoading] = useState(false);
+    const [previewImages, setPreviewImages] = useState([]);
+
+    const navigate = useNavigate();
 
     const values = {
 
@@ -68,7 +72,12 @@ export default function UpdatePro() {
 
             if(data.success){
                 setSuccessMsg('Product added successfully');
-                console.log(...formData);
+
+                setTimeout(() => {
+
+                    navigate('/products');
+
+                } , 3500);
             }
             else{
                 setErrMsg('Added failed, Please try again');
@@ -90,7 +99,71 @@ export default function UpdatePro() {
 
         enableReinitialize: true,
 
+        validate : (values) => {
+
+            const error = {};
+
+            setErrMsg(null);
+
+            if(values.subImages.length === 0){
+                setImgError('Product images is empty !')
+            }
+
+            if(values.name.length < 3){
+                error.name = 'Product name is too short';
+            }
+            if(!values.name){
+                error.name = 'Product name is required';
+            }
+            if(values.name.length > 50){
+                error.name = 'Product name is too long';
+            }
+
+            if(values.description.length < 10){
+                error.description = 'Product description is too short';
+            }
+            if(!values.description){
+                error.description = 'Product description is required';
+            }
+            if(values.description.length > 1000){
+                error.description = 'Product description is too long';
+            }
+
+            if (!values.price) {
+                error.price = 'Product price required';
+            } 
+            else if (!/^\d+(\.\d{1,2})?$/.test(values.price)) {
+                error.price = 'Price must be a number';
+            }
+
+            if (!values.discount) {
+                error.discount = 'Product discount required';
+            } 
+            else if (!/^\d+(\.\d{1,2})?$/.test(values.discount)) {
+                error.discount = 'Discount must be a number';
+            }
+
+            return error;
+
+        }
+
     });
+
+    const handleFileChange = (e) => {
+        const files = Array.from(e.currentTarget.files);
+        setErrMsg(null);
+
+        if (files.length > 4) {
+            setImgError('You can only upload a maximum of 4 images');
+            return;
+        }
+
+        setImgError(null);
+        formikObj.setFieldValue('subImages', files);
+
+        const imagePreviews = files.map((file) => URL.createObjectURL(file));
+        setPreviewImages(imagePreviews);
+    };
 
     return <React.Fragment>
 
@@ -102,18 +175,34 @@ export default function UpdatePro() {
             style={updateLoading ? {opacity : '0.6'} : {}} className={formCSS.form}
         >
 
+            {previewImages.length > 0 ? <div className={formCSS.display_images}>
+
+                {previewImages.map((src, index) => <img 
+                    key={index} src={src} alt={`Preview ${index}`} 
+                    className={formCSS.preview_image} 
+                />)}
+
+            </div> : <div className={formCSS.display_images}>
+
+                {data?.data.result[0].image.map((src, index) => <img 
+                    key={index} src={src.url} alt={`Preview ${index}`} 
+                    className={formCSS.preview_image} 
+                />)}
+
+            </div>}
+
             <label htmlFor="subImages" className={formCSS.input_images}>
+
+                {imgError ? <span className={formCSS.err_msg_label}>* {imgError} </span> : ''}
 
                 <input 
                     id='subImages' type="file" multiple
-                    onChange={(e) => {
-                        formikObj.setFieldValue('subImages', e.currentTarget.files);
-                    }}
+                    onChange={handleFileChange}
                 />
 
                 <div className={formCSS.fake_input}>
                     <i className="fa-regular fa-images"></i>
-                    <p>Add images</p>
+                    <p>Change images</p>
                 </div>
 
             </label>
@@ -124,12 +213,16 @@ export default function UpdatePro() {
 
                 <label htmlFor="name">
                     <span>Product name : </span>
+                    {formikObj.errors.name && formikObj.touched.name && 
+                        <span className={formCSS.err_msg_label}>* {formikObj.errors.name}</span>
+                    }
                 </label>
 
                 <input
                     id='name'
                     type="text" placeholder={isLoading ? "Loading..." : "Enter product name"}
                     onChange={formikObj.handleChange}
+                    onBlur={formikObj.handleBlur}
                     value={formikObj.values.name || ''}
                 />
 
@@ -141,12 +234,16 @@ export default function UpdatePro() {
 
                 <label htmlFor="description">
                     <span>Product description : </span>
+                    {formikObj.errors.description && formikObj.touched.description && 
+                        <span className={formCSS.err_msg_label}>* {formikObj.errors.description}</span>
+                    }
                 </label>
 
                 <input
                     id='description'
                     type="text" placeholder={isLoading ? "Loading..." : "Enter product description"}
                     onChange={formikObj.handleChange}
+                    onBlur={formikObj.handleBlur}
                     value={formikObj.values.description || ''}
                 />
 
@@ -158,12 +255,16 @@ export default function UpdatePro() {
 
                 <label htmlFor="price">
                     <span>Product price : </span>
+                    {formikObj.errors.price && formikObj.touched.price && 
+                        <span className={formCSS.err_msg_label}>* {formikObj.errors.price}</span>
+                    }
                 </label>
 
                 <input
                     id='price'
                     type="text" placeholder={isLoading ? "Loading..." : "Enter product price"}
                     onChange={formikObj.handleChange}
+                    onBlur={formikObj.handleBlur}
                     value={formikObj.values.price || ''}
                 />
 
@@ -175,12 +276,16 @@ export default function UpdatePro() {
 
                 <label htmlFor="discount">
                     <span>Product discount : </span>
+                    {formikObj.errors.discount && formikObj.touched.price && 
+                        <span className={formCSS.err_msg_label}>* {formikObj.errors.price}</span>
+                    }
                 </label>
 
                 <input
                     id='discount'
                     type="text" placeholder={isLoading ? "Loading..." : "Enter product discount"}
                     onChange={formikObj.handleChange}
+                    onBlur={formikObj.handleBlur}
                     value={formikObj.values.discount || ''}
                 />
 

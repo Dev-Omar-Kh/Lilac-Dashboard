@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
 import formCSS from '../../Style/form.module.css';
+import { motion } from 'framer-motion';
+import { ThreeCircles } from 'react-loader-spinner';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import Status from '../../Components/Status/Status';
-import { ThreeCircles } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 
-export default function AddPro() {
+export default function AddService() {
 
-    // ====== add-product ====== //
+    // ====== add-services ====== //
 
     const [imgError, setImgError] = useState(null)
     const [errMsg, setErrMsg] = useState(null);
@@ -18,6 +18,7 @@ export default function AddPro() {
     const [successMsg, setSuccessMsg] = useState(null);
     const [addLoading, setAddLoading] = useState(false);
     const [previewImages, setPreviewImages] = useState([]);
+    const [mediaType, setMediaType] = useState(null);
 
     const navigate = useNavigate();
 
@@ -25,9 +26,7 @@ export default function AddPro() {
 
         name : '',
         description : '',
-        price : '',
-        discount : '',
-        subImages : [],
+        media : '',
 
     };
 
@@ -41,25 +40,20 @@ export default function AddPro() {
         
         formData.append('name', values.name);
         formData.append('description', values.description);
-        formData.append('price', values.price);
-        formData.append('discount', values.discount);
-        
-        Array.from(values.subImages).forEach((file) => {
-            formData.append('subImages', file);
-        });
+        formData.append('media', values.media);
 
         try {
 
-            const {data} = await axios.post('https://lilac-backend.vercel.app/product/createProduct' , formData  , {
+            const {data} = await axios.post('https://lilac-backend.vercel.app/services/add' , formData  , {
                 headers: {'Content-Type': 'multipart/form-data'}
             });
 
             if(data.success){
-                setSuccessMsg('Product added successfully');
+                setSuccessMsg('Service added successfully');
 
                 setTimeout(() => {
 
-                    navigate('/products');
+                    navigate('/services');
 
                 } , 3500);
             }
@@ -68,7 +62,7 @@ export default function AddPro() {
             }
 
         } catch (error) {
-            setErrMsg('Added error, Please try again');
+            setErrMsg(`Added error, ${error.response.data.msgError}`);
         }
 
         setAddLoading(false);
@@ -87,42 +81,28 @@ export default function AddPro() {
 
             setErrMsg(null);
 
-            if(values.subImages.length === 0){
-                setImgError('Product images is empty !')
+            if(!values.media){
+                setImgError('Service images is empty !')
             }
 
             if(values.name.length < 3){
-                error.name = 'Product name is too short';
+                error.name = 'Service name is too short';
             }
             if(!values.name){
-                error.name = 'Product name is required';
+                error.name = 'Service name is required';
             }
             if(values.name.length > 50){
-                error.name = 'Product name is too long';
+                error.name = 'Service name is too long';
             }
 
             if(values.description.length < 10){
-                error.description = 'Product description is too short';
+                error.description = 'Service description is too short';
             }
             if(!values.description){
-                error.description = 'Product description is required';
+                error.description = 'Service description is required';
             }
             if(values.description.length > 1000){
-                error.description = 'Product description is too long';
-            }
-
-            if (!values.price) {
-                error.price = 'Product price required';
-            } 
-            else if (!/^\d+(\.\d{1,2})?$/.test(values.price)) {
-                error.price = 'Price must be a number';
-            }
-
-            if (!values.discount) {
-                error.discount = 'Product discount required';
-            } 
-            else if (!/^\d+(\.\d{1,2})?$/.test(values.discount)) {
-                error.discount = 'Discount must be a number';
+                error.description = 'Service description is too long';
             }
 
             return error;
@@ -132,19 +112,21 @@ export default function AddPro() {
     });
 
     const handleFileChange = (e) => {
-        const files = Array.from(e.currentTarget.files);
+
+        const file = e.target.files[0];
         setErrMsg(null);
 
-        if (files.length > 4) {
-            setImgError('You can only upload a maximum of 4 images');
-            return;
+        if(file){
+
+            formikObj.setFieldValue('media', file);
+
+            const fileType = file.type.split('/')[0];
+            setMediaType(fileType);
+
+            const media = URL.createObjectURL(file);
+            setPreviewImages(media);
         }
 
-        setImgError(null);
-        formikObj.setFieldValue('subImages', files);
-
-        const imagePreviews = files.map((file) => URL.createObjectURL(file));
-        setPreviewImages(imagePreviews);
     };
 
     return <React.Fragment>
@@ -152,17 +134,25 @@ export default function AddPro() {
         {successMsg ? <Status icon='success' isVisible={visible} visibility={setVisible} data={successMsg} /> : ''}
         {errMsg ? <Status icon='error' isVisible={visible} visibility={setVisible} data={errMsg} /> : ''}
 
-        <form
+        <form 
+            style={addLoading ? {opacity : '0.6'} : {}}
             onSubmit={formikObj.handleSubmit}
-            style={addLoading ? {opacity : '0.6'} : {}} className={formCSS.form}
+            className={formCSS.form}
         >
 
             {previewImages.length > 0 && <div className={formCSS.display_images}>
 
-                {previewImages.map((src, index) => <img 
-                    key={index} src={src} alt={`Preview ${index}`} 
+                {mediaType === 'image' ?<img 
+                    src={previewImages} alt={previewImages} 
                     className={formCSS.preview_image} 
-                />)}
+                /> : <div className={formCSS.preview_image}>
+
+                    <video src={previewImages}/>
+                    <span id='startVideo'>
+                        <i className="fa-regular fa-circle-play"></i>
+                    </span>
+
+                </div>}
 
             </div>}
 
@@ -171,13 +161,13 @@ export default function AddPro() {
                 {imgError ? <span className={formCSS.err_msg_label}>* {imgError} </span> : ''}
 
                 <input 
-                    id='subImages' type="file" multiple
+                    id='subImages' type="file"
                     onChange={handleFileChange}
                 />
 
                 <div className={formCSS.fake_input}>
                     <i className="fa-regular fa-images"></i>
-                    <p>Add images</p>
+                    <p>Add media</p>
                 </div>
 
             </label>
@@ -187,7 +177,7 @@ export default function AddPro() {
                 <div className={formCSS.loader}></div>
 
                 <label htmlFor="name">
-                    <span>Product name : </span>
+                    <span>Service name : </span>
                     {formikObj.errors.name && formikObj.touched.name && 
                         <span className={formCSS.err_msg_label}>* {formikObj.errors.name}</span>
                     }
@@ -208,7 +198,7 @@ export default function AddPro() {
                 <div className={formCSS.loader}></div>
 
                 <label htmlFor="description">
-                    <span>Product description : </span>
+                    <span>Service description : </span>
                     {formikObj.errors.description && formikObj.touched.description && 
                         <span className={formCSS.err_msg_label}>* {formikObj.errors.description}</span>
                     }
@@ -220,48 +210,6 @@ export default function AddPro() {
                     onChange={formikObj.handleChange}
                     onBlur={formikObj.handleBlur}
                     value={formikObj.values.description}
-                />
-
-            </div>
-
-            <div className={formCSS.input_cont + ' ' + formCSS.half_input_cont}>
-
-                <div className={formCSS.loader}></div>
-
-                <label htmlFor="price">
-                    <span>Product price : </span>
-                    {formikObj.errors.price && formikObj.touched.price && 
-                        <span className={formCSS.err_msg_label}>* {formikObj.errors.price}</span>
-                    }
-                </label>
-
-                <input
-                    id='price'
-                    type="text" placeholder="Enter product price"
-                    onChange={formikObj.handleChange}
-                    onBlur={formikObj.handleBlur}
-                    value={formikObj.values.price}
-                />
-
-            </div>
-
-            <div className={formCSS.input_cont + ' ' + formCSS.half_input_cont}>
-
-                <div className={formCSS.loader}></div>
-
-                <label htmlFor="discount">
-                    <span>Product discount : </span>
-                    {formikObj.errors.discount && formikObj.touched.discount && 
-                        <span className={formCSS.err_msg_label}>* {formikObj.errors.discount}</span>
-                    }
-                </label>
-
-                <input
-                    id='discount'
-                    type="text" placeholder="Enter product discount"
-                    onChange={formikObj.handleChange}
-                    onBlur={formikObj.handleBlur}
-                    value={formikObj.values.discount}
                 />
 
             </div>

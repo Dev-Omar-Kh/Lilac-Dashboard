@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ThreeCircles } from 'react-loader-spinner';
 import { useFormik } from 'formik';
@@ -14,15 +14,25 @@ export default function Contact() {
 
     // ====== get-content-data ====== //
 
-    const getContent = async() => {
+    const [cID, setCID] = useState(null)
+
+    const getContact = async() => {
 
         return await axios.get('https://lilac-backend.vercel.app/contactUs');
 
     };
 
-    const {data , isLoading} = useQuery('getContent' , getContent);
+    const {data , isLoading} = useQuery('getContact' , getContact);
 
-    const cID = data?.data.data[0]._id
+    useEffect(() => {
+
+        if(!isLoading){
+
+            setCID(data?.data.data[0]._id);
+
+        }
+
+    } , [isLoading , data])
 
     // ====== add-services ====== //
 
@@ -33,15 +43,15 @@ export default function Contact() {
 
     const values = {
 
-        email : data?.data.data[0].email,
-        address : data?.data.data[0].address,
-        phone : data?.data.data[0].phone,
+        email : !isLoading ? data?.data.data[0].email : '',
+        address : !isLoading ? data?.data.data[0].address : '',
+        phone : !isLoading ? data?.data.data[0].phone : '',
 
-        facebook : data?.data.data[0].socialLinks.facebook,
-        instagram : data?.data.data[0].socialLinks.instagram,
-        twitter : data?.data.data[0].socialLinks.twitter,
-        linkedIn : data?.data.data[0].socialLinks.linkedIn,
-        youtube : data?.data.data[0].socialLinks.youtube,
+        facebook : !isLoading ? data?.data.data[0].socialLinks.facebook : '',
+        instagram : !isLoading ? data?.data.data[0].socialLinks.instagram : '',
+        twitter : !isLoading ? data?.data.data[0].socialLinks.twitter : '',
+        linkedIn : !isLoading ? data?.data.data[0].socialLinks.linkedIn : '',
+        youtube : !isLoading ? data?.data.data[0].socialLinks.youtube : '',
 
     };
 

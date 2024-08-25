@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ThreeCircles } from 'react-loader-spinner';
 import { useFormik } from 'formik';
@@ -13,6 +13,8 @@ export default function Content() {
 
     // ====== get-content-data ====== //
 
+    const [coID, setCoID] = useState(null);
+
     const getContent = async() => {
 
         return await axios.get('https://lilac-backend.vercel.app/content');
@@ -21,7 +23,15 @@ export default function Content() {
 
     const {data , isLoading} = useQuery('getContent' , getContent);
 
-    const cID = data?.data.data._id
+    useEffect(() => {
+
+        if(!isLoading){
+
+            setCoID(data?.data.data._id);
+
+        }
+
+    } , [isLoading , data])
 
     // ====== add-services ====== //
 
@@ -36,14 +46,14 @@ export default function Content() {
 
     const values = {
 
-        title : data?.data.data.title,
-        landingPageText : data?.data.data.landingPageText,
-        logo : data?.data.data.logo.url || [],
-        landingPageImage : data?.data.data.landingPageImage.url || [],
+        title : !isLoading ? data?.data.data.title : '',
+        landingPageText : !isLoading ? data?.data.data.landingPageText : '',
+        logo : !isLoading ? data?.data.data.logo || [] : '',
+        landingPageImage : !isLoading ? data?.data.data.landingPageImage || [] : '',
 
     };
 
-    const addProduct = async(values) => {
+    const updateContent = async(values) => {
 
         setAddLoading(true);
         setSuccessMsg(null);
@@ -58,7 +68,7 @@ export default function Content() {
 
         try {
 
-            const {data} = await axios.put(`https://lilac-backend.vercel.app/content/${cID}` , formData  , {
+            const {data} = await axios.put(`https://lilac-backend.vercel.app/content/${coID}` , formData  , {
                 headers: {'Content-Type': 'multipart/form-data'}
             });
 
@@ -82,7 +92,7 @@ export default function Content() {
 
         initialValues : values,
 
-        onSubmit : addProduct,
+        onSubmit : updateContent,
 
         enableReinitialize: true,
 

@@ -13,13 +13,13 @@ export default function About() {
 
     // ====== get-content-data ====== //
 
-    const getContent = async() => {
+    const getAbout = async() => {
 
         return await axios.get('https://lilac-backend.vercel.app/aboutUs');
 
     };
 
-    const {data , isLoading} = useQuery('getContent' , getContent);
+    const {data , isLoading} = useQuery('getAbout' , getAbout);
 
     const cID = data?.data.data[0]._id
 
@@ -39,7 +39,7 @@ export default function About() {
 
     };
 
-    const addProduct = async(values) => {
+    const updateAbout = async(values) => {
 
         setAddLoading(true);
         setSuccessMsg(null);
@@ -65,7 +65,6 @@ export default function About() {
 
         } catch (error) {
             setErrMsg(`Added error, ${error.response.data.msgError}`);
-            console.log(...formData);
         }
 
         setAddLoading(false);
@@ -76,7 +75,7 @@ export default function About() {
 
         initialValues : values,
 
-        onSubmit : addProduct,
+        onSubmit : updateAbout,
 
         enableReinitialize: true,
 

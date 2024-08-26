@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 
 export default function About() {
 
-    // ====== get-content-data ====== //
+    // ====== get-about-data ====== //
 
     const getAbout = async() => {
 
@@ -57,7 +57,7 @@ export default function About() {
             });
 
             if(data.success){
-                setSuccessMsg('Service added successfully');
+                setSuccessMsg('About added successfully');
             }
             else{
                 setErrMsg('Added failed, Please try again');
@@ -86,7 +86,7 @@ export default function About() {
             setErrMsg(null);
 
             if(!values.aboutUsImage){
-                setImgError('About image is empty !')
+                setImgError('About image is empty !');
             }
 
             if(values.description.length < 3){
@@ -154,12 +154,12 @@ export default function About() {
 
                 </div>}
 
-                <label htmlFor="landingPageImage" className={formCSS.input_images}>
+                <label htmlFor="aboutUsImage" className={formCSS.input_images}>
 
                     {imgError ? <span className={formCSS.err_msg_label}>* {imgError} </span> : ''}
 
                     <input 
-                        id='landingPageImage' type="file"
+                        id='aboutUsImage' type="file"
                         onChange={handleFileChange}
                     />
 

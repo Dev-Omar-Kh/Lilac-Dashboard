@@ -98,11 +98,12 @@ export default function UpdatePro() {
 
         validate : (values) => {
 
+            setErrMsg(null);
+            setImgError(null)
+
             const error = {};
 
-            setErrMsg(null);
-
-            if(values.subImages.length === 0){
+            if(!values.subImages.length){
                 setImgError('Product images is empty !')
             }
 

@@ -92,9 +92,10 @@ export default function UpdateService() {
 
         validate : (values) => {
 
-            const error = {};
-
             setErrMsg(null);
+            setImgError(null);
+
+            const error = {};
 
             if(!values.media){
                 setImgError('Service images is empty !')

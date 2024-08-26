@@ -73,15 +73,14 @@ export default function Content() {
             });
 
             if(data.success){
-                setSuccessMsg('Service added successfully');
+                setSuccessMsg('Content updated successfully');
             }
             else{
-                setErrMsg('Added failed, Please try again');
+                setErrMsg('Updated failed, Please try again');
             }
 
         } catch (error) {
-            setErrMsg(`Added error, ${error.response.data.msgError}`);
-            console.log(...formData);
+            setErrMsg(`Updated error, ${error.response.data.msgError}`);
         }
 
         setAddLoading(false);
@@ -97,10 +96,12 @@ export default function Content() {
         enableReinitialize: true,
 
         validate : (values) => {
+            
+            setErrMsg(null);
+            setImgError(null);
+            setImgError2(null);
 
             const error = {};
-
-            setErrMsg(null);
 
             if(!values.landingPageImage){
                 setImgError('Main image is empty !')

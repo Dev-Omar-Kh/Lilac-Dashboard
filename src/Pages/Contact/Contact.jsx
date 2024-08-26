@@ -82,14 +82,14 @@ export default function Contact() {
             });
 
             if(data.success){
-                setSuccessMsg('Service added successfully');
+                setSuccessMsg('Contact updated successfully');
             }
             else{
-                setErrMsg('Added failed, Please try again');
+                setErrMsg('Updated failed, Please try again');
             }
 
         } catch (error) {
-            setErrMsg(`Added error, ${error.response.data.msgError}`);
+            setErrMsg(`Updated error, ${error.response.data.msgError}`);
         }
 
         setAddLoading(false);

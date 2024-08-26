@@ -59,7 +59,7 @@ export default function Password() {
             }
 
         } catch (error) {
-            console.log(error);
+            setErrMsg('Wrong password, Try again');
         }
 
         setAddLoading(false);

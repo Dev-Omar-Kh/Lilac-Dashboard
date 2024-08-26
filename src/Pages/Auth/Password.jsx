@@ -80,6 +80,10 @@ export default function Password() {
                 error.password = 'The password must be more than 8 characters'
             }
 
+            if(!values.password){
+                error.password = 'The password is required'
+            }
+
             return error;
 
         }

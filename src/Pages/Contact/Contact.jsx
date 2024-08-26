@@ -340,7 +340,7 @@ export default function Contact() {
                         {addLoading ? <ThreeCircles
                             visible={true} height="20" width="20" color="var(--white-color)"
                             ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
-                        /> :'Update content'}
+                        /> :'Update contact'}
                     </motion.button>
 
                 </div>

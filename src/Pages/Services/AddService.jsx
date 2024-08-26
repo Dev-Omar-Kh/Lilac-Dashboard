@@ -221,7 +221,7 @@ export default function AddService() {
                     {addLoading ? <ThreeCircles
                         visible={true} height="20" width="20" color="var(--white-color)"
                         ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
-                    /> :'Add product'}
+                    /> :'Add service'}
                 </motion.button>
 
             </div>

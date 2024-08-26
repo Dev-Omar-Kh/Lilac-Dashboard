@@ -45,7 +45,7 @@ export default function Login() {
             if(data.success){
 
                 sessionStorage.setItem('adminTkn', data.result);
-                setSuccessMsg('Welcome to dashboard');
+                setSuccessMsg('Welcome to dashboard as admin');
 
                 setTimeout(() => {
 
@@ -55,7 +55,7 @@ export default function Login() {
 
             }
             else{
-                setErrMsg('Wrong password, Try again');
+                setErrMsg('Wrong login, Try again');
             }
 
         } catch (error) {

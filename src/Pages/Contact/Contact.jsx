@@ -156,8 +156,8 @@ export default function Contact() {
         <div className={localCSS.container}>
 
             <div className={localCSS.title}>
-                <i className="fa-solid fa-align-left"></i>
-                Content 
+                <i className="fa-regular fa-comments"></i>
+                Contact us 
             </div>
 
             <form 

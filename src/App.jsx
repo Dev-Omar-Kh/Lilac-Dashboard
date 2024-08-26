@@ -19,6 +19,7 @@ import Contact from './Pages/Contact/Contact';
 
 import './App.css';
 import OwnerRoute from './Protected-Route/OwnerRoute';
+import ResetPass from './Pages/Reset-Pass/ResetPass';
 
 const routes = createBrowserRouter([
 
@@ -52,6 +53,8 @@ const routes = createBrowserRouter([
     {path : '/dashboard/about' , element : <About />},
 
     {path : '/dashboard/contact' , element : <Contact />},
+
+    {path : '/dashboard/reset' , element : <ResetPass />},
 
   ]}
 

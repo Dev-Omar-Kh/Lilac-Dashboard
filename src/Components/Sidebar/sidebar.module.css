@@ -49,11 +49,32 @@
 
 .nav{
 
+    position: relative;
     width: 100%;
     height: calc(100% - 100px);
     padding: 24px 0px;
     padding-bottom: 0px;
     overflow: hidden;
+
+}
+
+.admin_login{
+
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white-color);
+    background-color: var(--dark-color-1);
+    text-align: center;
+    border-radius: 6px;
 
 }
 
@@ -144,7 +165,7 @@ nav ul a:hover #i{
 
     }
 
-    .logo a p , .nav ul a span{
+    .logo a p , .nav ul a span , .admin_login span{
 
         display: none;
 
@@ -206,7 +227,7 @@ nav ul a:hover #i{
 
     }
 
-    .logo a p , .nav ul a span {
+    .logo a p , .nav ul a span  , .admin_login span{
 
         display: inline-block;
 

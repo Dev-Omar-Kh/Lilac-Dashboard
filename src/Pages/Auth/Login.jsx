@@ -6,8 +6,91 @@ import formCSS from '../../Style/form.module.css';
 
 import eye from '../../Images/SVG/eye-icon-svg.svg';
 import eyeSlash from '../../Images/SVG/eye-slash-icon-svg.svg';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import axios from 'axios';
+import { ThreeCircles } from 'react-loader-spinner';
+import Status from '../../Components/Status/Status';
 
 export default function Login() {
+
+    // ====== sendData ====== //
+
+    const [errMsg, setErrMsg] = useState(null);
+    const [successMsg, setSuccessMsg] = useState(null);
+    const [addLoading, setAddLoading] = useState(false);
+    const [visible, setVisible] = useState(true);
+
+    const color = 'var(--dark-color-1)';
+
+    const navigate = useNavigate();
+
+    const values = {
+
+        email : '',
+        password : '',
+
+    }
+
+    const sendPassword = async(values) => {
+
+        setAddLoading(true);
+        setSuccessMsg(null);
+        setErrMsg(null);
+
+        try {
+
+            const {data} = await axios.post('https://lilac-backend.vercel.app/auth/login' , values);
+
+            if(data.success){
+
+                sessionStorage.setItem('adminTkn', data.result);
+                setSuccessMsg('Welcome to dashboard');
+
+                setTimeout(() => {
+
+                    navigate('/dashboard/services');
+
+                } , 3500)
+
+            }
+            else{
+                setErrMsg('Wrong password, Try again');
+            }
+
+        } catch (error) {
+            setErrMsg(`${error.response.data.msgError}, Try again`);
+        }
+
+        setAddLoading(false);
+
+    };
+
+    const formikObj = useFormik({
+
+        initialValues : values,
+
+        onSubmit : sendPassword,
+
+        validate : (values) => {
+
+            setErrMsg(null)
+
+            const error = {}
+
+            if(!values.email.includes('@') && !values.email.includes('.')){
+                error.email = 'Email is invalid';
+            }
+
+            if(values.password.length < 8){
+                error.password = 'The password must be more than 8 characters';
+            }
+
+            return error;
+
+        }
+
+    });
 
     // ====== view-password ====== //
 
@@ -34,25 +117,37 @@ export default function Login() {
 
     return <React.Fragment>
 
+        {successMsg ? <Status color={color} icon='success' isVisible={visible} visibility={setVisible} data={successMsg} /> : ''}
+        {errMsg ? <Status color={color} icon='error' isVisible={visible} visibility={setVisible} data={errMsg} /> : ''}
+
         <div className={loginCSS.container}>
 
             <div className={loginCSS.title}>
                 <img src={require('../../Images/logo.png')} alt="" />
             </div>
 
-            <form className={formCSS.form}>
+            <form 
+                onSubmit={formikObj.handleSubmit}
+                className={formCSS.form} style={addLoading ? {opacity : '0.6'} : {}}
+            >
 
                 <div className={formCSS.input_cont}>
 
                     <div className={formCSS.loader}></div>
 
-                    <label htmlFor="password">
+                    <label htmlFor="email">
                         <span> Email : </span>
+                        {formikObj.errors.email && formikObj.touched.email && 
+                            <span className={formCSS.err_msg_label}>* {formikObj.errors.email}</span>
+                        }
                     </label>
 
                     <input
-                        id='text'
+                        id='email'
                         type="text" placeholder="Enter your email"
+                        onBlur={formikObj.handleBlur}
+                        onChange={formikObj.handleChange}
+                        value={formikObj.values.email}
                     />
 
                 </div>
@@ -61,11 +156,17 @@ export default function Login() {
 
                     <label htmlFor="password">
                         <span> Password : </span>
+                        {formikObj.errors.password && formikObj.touched.password && 
+                            <span className={formCSS.err_msg_label}>* {formikObj.errors.password}</span>
+                        }
                     </label>
 
                     <input
                         id='password'
                         type={passwordShowRegister1 ? "text" : "password"} placeholder="Enter your password"
+                        onBlur={formikObj.handleBlur}
+                        onChange={formikObj.handleChange}
+                        value={formikObj.values.password}
                     />
 
                     <div id='showPasswordRegister1' className={formCSS.eye_cont}>
@@ -101,7 +202,10 @@ export default function Login() {
                 <div className={formCSS.btn_cont}>
 
                     <motion.button whileTap={{scale : 0.95}} className={formCSS.submit} type='submit'>
-                        Log In
+                        {addLoading ? <ThreeCircles
+                            visible={true} height="20" width="20" color="var(--white-color)"
+                            ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
+                        /> :'LogIn'}
                     </motion.button>
 
                 </div>

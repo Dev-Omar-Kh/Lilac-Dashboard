@@ -14,7 +14,7 @@ export default function Contact() {
 
     // ====== get-content-data ====== //
 
-    const [cID, setCID] = useState(null)
+    const [cID, setCID] = useState(null);
 
     const getContact = async() => {
 

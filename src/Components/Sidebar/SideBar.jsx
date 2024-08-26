@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import sbCSS from './sidebar.module.css';
@@ -6,8 +6,26 @@ import './active.css'
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { ThreeCircles } from 'react-loader-spinner';
+import { jwtDecode } from 'jwt-decode';
 
 export default function SideBar({show , setShow}) {
+
+    // ====== admin-loggedIn ====== //
+
+    const [admin, setAdmin] = useState(false);
+    const [role, setRole] = useState(null);
+
+    useEffect(() => {
+
+        if (sessionStorage.getItem('adminTkn')) {
+
+            const {role} = jwtDecode(sessionStorage.getItem('adminTkn'));
+            setRole(role)
+            setAdmin(true);
+
+        }
+
+    } , [admin]);
 
     // ====== get-logo ====== //
 
@@ -62,6 +80,11 @@ export default function SideBar({show , setShow}) {
 
                 <nav className={sbCSS.nav}>
 
+                    {!admin && <Link to={'/login'} className={sbCSS.admin_login}>
+                        <i className="fa-solid fa-user-gear"></i>
+                        <span>Login as admin</span>
+                    </Link>}
+
                     <ul>
 
                         <NavLink to={'/dashboard/services'}>
@@ -98,6 +121,13 @@ export default function SideBar({show , setShow}) {
                                 <span>Contact us</span>
                             </li>
                         </NavLink>
+
+                        {role === 'admin' && <NavLink to={'/dashboard/reset'}>
+                            <li>
+                                <i id={sbCSS.i} className="icons_active fa-solid fa-key"></i>
+                                <span>Reset password</span>
+                            </li>
+                        </NavLink>}
 
                     </ul>
 

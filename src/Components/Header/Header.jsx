@@ -5,6 +5,10 @@ import hCSS from './header.module.css';
 
 export default function Header({clickNav}) {
 
+    const stopSend = (e) => {
+        e.preventDefault();
+    }
+
     return <React.Fragment>
 
         <div className={hCSS.container}>
@@ -15,7 +19,7 @@ export default function Header({clickNav}) {
                     <i className="fa-solid fa-bars-staggered"></i>
                 </motion.div>
 
-                <form className={hCSS.form}>
+                <form onSubmit={stopSend} className={hCSS.form}>
 
                     <input type="text" placeholder='Search about something...'/>
                     <button type='submit'><i className="fa-solid fa-magnifying-glass"></i></button>

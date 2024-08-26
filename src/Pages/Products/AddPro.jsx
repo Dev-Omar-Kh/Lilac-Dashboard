@@ -59,7 +59,7 @@ export default function AddPro() {
 
                 setTimeout(() => {
 
-                    navigate('/products');
+                    navigate('/dashboard/products');
 
                 } , 3500);
             }

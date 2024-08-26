@@ -38,6 +38,7 @@ export default function ProductCard({data , refetch}) {
 
         {successMsg ? <Status icon='success' isVisible={visible} visibility={setVisible} data={successMsg} /> : ''}
         {errMsg ? <Status icon='error' isVisible={visible} visibility={setVisible} data={errMsg} /> : ''}
+
         <WarnMsg
             setErrMsg={setErrMsg} setSuccessMsg={setSuccessMsg} 
             rerender={refetch} userData={userData} ban={banMsg} 

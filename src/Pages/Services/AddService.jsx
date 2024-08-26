@@ -53,7 +53,7 @@ export default function AddService() {
 
                 setTimeout(() => {
 
-                    navigate('/services');
+                    navigate('/dashboard/services');
 
                 } , 3500);
             }

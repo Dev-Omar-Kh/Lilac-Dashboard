@@ -66,7 +66,7 @@ export default function UpdateService() {
 
                 setTimeout(() => {
 
-                    navigate('/services');
+                    navigate('/dashboard/services');
 
                 } , 3500);
             }

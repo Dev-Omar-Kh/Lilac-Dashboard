@@ -72,7 +72,7 @@ export default function UpdatePro() {
 
                 setTimeout(() => {
 
-                    navigate('/products');
+                    navigate('/dashboard/products');
 
                 } , 3500);
             }

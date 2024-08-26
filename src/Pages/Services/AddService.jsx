@@ -30,7 +30,7 @@ export default function AddService() {
 
     };
 
-    const addProduct = async(values) => {
+    const addService = async(values) => {
 
         setAddLoading(true);
         setSuccessMsg(null);
@@ -73,7 +73,7 @@ export default function AddService() {
 
         initialValues : values,
 
-        onSubmit : addProduct,
+        onSubmit : addService,
 
         validate : (values) => {
 
@@ -156,12 +156,12 @@ export default function AddService() {
 
             </div>}
 
-            <label htmlFor="subImages" className={formCSS.input_images}>
+            <label htmlFor="media" className={formCSS.input_images}>
 
                 {imgError ? <span className={formCSS.err_msg_label}>* {imgError} </span> : ''}
 
                 <input 
-                    id='subImages' type="file"
+                    id='media' type="file"
                     onChange={handleFileChange}
                 />
 
@@ -185,7 +185,7 @@ export default function AddService() {
 
                 <input
                     id='name'
-                    type="text" placeholder="Enter product name"
+                    type="text" placeholder="Enter service name"
                     onChange={formikObj.handleChange}
                     onBlur={formikObj.handleBlur}
                     value={formikObj.values.name}
@@ -206,7 +206,7 @@ export default function AddService() {
 
                 <input
                     id='description'
-                    type="text" placeholder="Enter product description"
+                    type="text" placeholder="Enter service description"
                     onChange={formikObj.handleChange}
                     onBlur={formikObj.handleBlur}
                     value={formikObj.values.description}

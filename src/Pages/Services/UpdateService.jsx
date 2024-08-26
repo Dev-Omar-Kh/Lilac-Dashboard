@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 
 export default function UpdateService() {
 
-    // ====== get-product-by-id ====== //
+    // ====== get-services-by-id ====== //
 
     const {id} = useParams();
 
@@ -43,7 +43,7 @@ export default function UpdateService() {
 
     };
 
-    const addProduct = async(values) => {
+    const updateService = async(values) => {
 
         setAddLoading(true);
         setSuccessMsg(null);
@@ -62,7 +62,7 @@ export default function UpdateService() {
             });
 
             if(data.success){
-                setSuccessMsg('Service added successfully');
+                setSuccessMsg('Service updated successfully');
 
                 setTimeout(() => {
 
@@ -71,11 +71,11 @@ export default function UpdateService() {
                 } , 3500);
             }
             else{
-                setErrMsg('Added failed, Please try again');
+                setErrMsg('Updated failed, Please try again');
             }
 
         } catch (error) {
-            setErrMsg(`Added error, ${error.response.data.msgError}`);
+            setErrMsg(`Updated error, ${error.response.data.msgError}`);
         }
 
         setAddLoading(false);
@@ -86,7 +86,7 @@ export default function UpdateService() {
 
         initialValues : values,
 
-        onSubmit : addProduct,
+        onSubmit : updateService,
 
         enableReinitialize: true,
 
@@ -186,18 +186,18 @@ export default function UpdateService() {
 
             </div>}
 
-            <label htmlFor="subImages" className={formCSS.input_images}>
+            <label htmlFor="media" className={formCSS.input_images}>
 
                 {imgError ? <span className={formCSS.err_msg_label}>* {imgError} </span> : ''}
 
                 <input 
-                    id='subImages' type="file"
+                    id='media' type="file"
                     onChange={handleFileChange}
                 />
 
                 <div className={formCSS.fake_input}>
                     <i className="fa-regular fa-images"></i>
-                    <p>Add media</p>
+                    <p>Update media</p>
                 </div>
 
             </label>
@@ -215,7 +215,7 @@ export default function UpdateService() {
 
                 <input
                     id='name'
-                    type="text" placeholder={isLoading ? "Loading..." : "Enter product name"}
+                    type="text" placeholder={isLoading ? "Loading..." : "Enter services name"}
                     onChange={formikObj.handleChange}
                     onBlur={formikObj.handleBlur}
                     value={formikObj.values.name || ''}
@@ -236,7 +236,7 @@ export default function UpdateService() {
 
                 <input
                     id='description'
-                    type="text" placeholder={isLoading ? "Loading..." :"Enter product description"}
+                    type="text" placeholder={isLoading ? "Loading..." :"Enter services description"}
                     onChange={formikObj.handleChange}
                     onBlur={formikObj.handleBlur}
                     value={formikObj.values.description || ''}
@@ -250,7 +250,7 @@ export default function UpdateService() {
                     {addLoading ? <ThreeCircles
                         visible={true} height="20" width="20" color="var(--white-color)"
                         ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
-                    /> :'Add product'}
+                    /> :'Update services'}
                 </motion.button>
 
             </div>

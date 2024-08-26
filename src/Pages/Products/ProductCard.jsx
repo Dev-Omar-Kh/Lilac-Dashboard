@@ -9,7 +9,7 @@ export default function ProductCard({data , refetch}) {
 
     const navigate = useNavigate();
 
-    const goToUpdate = () => {
+    const goToUpdateProduct = () => {
 
         navigate(`update/${data.id}`);
 
@@ -17,19 +17,19 @@ export default function ProductCard({data , refetch}) {
 
     // ====== handle-delete-product ====== //
 
-    const [banMsg, setBanMsg] = useState(false);
-    const [userData, setUserData] = useState(null);
+    const [deleteMsg, setDeleteMsg] = useState(false);
+    const [cardData, setCardData] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errMsg, setErrMsg] = useState(null);
     const [visible, setVisible] = useState(true);
     const [endPoint, setEndPoint] = useState(null);
 
-    const handelBan = (data) => {
+    const handelDeleteProduct = (data) => {
 
         setSuccessMsg(null);
         setErrMsg(null);
-        setBanMsg(true);
-        setUserData(data);
+        setDeleteMsg(true);
+        setCardData(data);
         setEndPoint('product/deleteProduct')
 
     }
@@ -41,16 +41,16 @@ export default function ProductCard({data , refetch}) {
 
         <WarnMsg
             setErrMsg={setErrMsg} setSuccessMsg={setSuccessMsg} 
-            rerender={refetch} userData={userData} ban={banMsg} 
-            setBan={setBanMsg} endPoint={endPoint}
+            rerender={refetch} cardData={cardData} deleteMsg={deleteMsg} 
+            setDeleteMsg={setDeleteMsg} endPoint={endPoint}
         />
 
         <div className={cProCSS.card}>
 
             <div className={cProCSS.actions}>
 
-                <button onClick={() => handelBan(data)}><i className="fa-solid fa-trash-can"></i></button>
-                <button onClick={goToUpdate}><i className="fa-regular fa-pen-to-square"></i></button>
+                <button onClick={() => handelDeleteProduct(data)}><i className="fa-solid fa-trash-can"></i></button>
+                <button onClick={goToUpdateProduct}><i className="fa-regular fa-pen-to-square"></i></button>
 
             </div>
 

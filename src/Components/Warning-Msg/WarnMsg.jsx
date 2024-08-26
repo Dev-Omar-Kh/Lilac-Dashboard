@@ -5,33 +5,38 @@ import { AnimatePresence, motion } from 'framer-motion';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function DelMsg({endPoint , userData , ban , setBan , rerender , setSuccessMsg , setErrMsg}) {
+export default function DelMsg({endPoint , cardData , deleteMsg , setDeleteMsg , rerender , setSuccessMsg , setErrMsg}) {
 
     // ====== handel-delete-user ====== //
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const deleteUser = async() => {
+    const deleteData = async() => {
 
         setIsLoading(true);
+        setSuccessMsg(null);
+        setErrMsg(null);
 
-        const {data} = await axios.delete(`https://lilac-backend.vercel.app/${endPoint}/${userData._id}`);
+        try {
 
-        if(data.success){
+            const {data} = await axios.delete(`https://lilac-backend.vercel.app/${endPoint}/${cardData._id}`);
 
-            rerender();
-            setBan(false);
-            setTimeout(() => {
-                setSuccessMsg('The user has been successfully banned !');
-            }, 200);
+            if(data.success){
 
-        }else{
+                setDeleteMsg(false);
+                setSuccessMsg(`${data.message} !`);
 
-            setBan(false);
-            setTimeout(() => {
-                setErrMsg('Something error !');
-            }, 200);
+                setTimeout(() => {rerender();} , 3500);
 
+            }else{
+
+                setDeleteMsg(false);
+                setErrMsg(`${data.msgError} !`);
+
+            }
+
+        } catch (error) {
+            setErrMsg(`${error.response.data.msgError} !`);
         }
 
         setIsLoading(false);
@@ -40,7 +45,7 @@ export default function DelMsg({endPoint , userData , ban , setBan , rerender , 
 
     const handelDeleteUser = () => {
 
-        deleteUser();
+        deleteData();
 
     }
 
@@ -66,7 +71,7 @@ export default function DelMsg({endPoint , userData , ban , setBan , rerender , 
 
         <AnimatePresence>
 
-            {ban && 
+            {deleteMsg && 
                 <motion.div 
                     variants={parentVariant} initial='hidden' animate='visible' exit='hidden'  transition='transition'
                     className={wCSS.container}
@@ -76,11 +81,11 @@ export default function DelMsg({endPoint , userData , ban , setBan , rerender , 
 
                         <h3>Warning !</h3>
 
-                        <p>Are you sure you want to delete the <span>{userData.name}</span> ?</p>
+                        <p>Are you sure you want to delete the <span>{cardData.name}</span> ?</p>
 
                         <div className={wCSS.action}>
 
-                            <motion.button onClick={()=>setBan(false)} whileTap={{scale : 0.9}} className={wCSS.cancel}>
+                            <motion.button onClick={()=>setDeleteMsg(false)} whileTap={{scale : 0.9}} className={wCSS.cancel}>
                                 Cancel
                             </motion.button>
                             <motion.button onClick={handelDeleteUser} whileTap={{scale : 0.9}} className={wCSS.ban}>

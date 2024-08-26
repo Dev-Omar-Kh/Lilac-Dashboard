@@ -28,7 +28,7 @@ export default function Header({clickNav}) {
 
                 <div className={hCSS.more}>
 
-                    <a href="http://localhost:3000/">Go to website</a>
+                    <a href="https://lilac-mu.vercel.app" target='_blank' rel="noreferrer">Go to website</a>
 
                 </div>
 

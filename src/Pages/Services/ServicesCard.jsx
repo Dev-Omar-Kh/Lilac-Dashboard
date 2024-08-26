@@ -9,7 +9,7 @@ export default function ServicesCard({data , refetch}) {
 
     const navigate = useNavigate();
 
-    const goToUpdate = () => {
+    const goToUpdateService = () => {
 
         navigate(`update/${data._id}`);
 
@@ -17,21 +17,21 @@ export default function ServicesCard({data , refetch}) {
 
     // ====== handle-delete-product ====== //
 
-    const [banMsg, setBanMsg] = useState(false);
-    const [userData, setUserData] = useState(null);
+    const [deleteMsg, setDeleteMsg] = useState(false);
+    const [cardData, setCardData] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errMsg, setErrMsg] = useState(null);
     const [visible, setVisible] = useState(true);
-    const [control, setControl] = useState(false);
     const [endPoint, setEndPoint] = useState(null);
+    const [control, setControl] = useState(false);
 
-    const handelBan = (data) => {
+    const handelDeleteService = (data) => {
 
         setSuccessMsg(null);
         setErrMsg(null);
-        setBanMsg(true);
-        setUserData(data);
-        setEndPoint('services/delete')
+        setDeleteMsg(true);
+        setCardData(data);
+        setEndPoint('services/delete');
 
     }
 
@@ -96,16 +96,16 @@ export default function ServicesCard({data , refetch}) {
         {errMsg ? <Status icon='error' isVisible={visible} visibility={setVisible} data={errMsg} /> : ''}
         <WarnMsg
             setErrMsg={setErrMsg} setSuccessMsg={setSuccessMsg} 
-            rerender={refetch} userData={userData} ban={banMsg} 
-            setBan={setBanMsg} endPoint={endPoint}
+            rerender={refetch} cardData={cardData} deleteMsg={deleteMsg} 
+            setDeleteMsg={setDeleteMsg} endPoint={endPoint}
         />
 
         <div className={cServicesCSS.card}>
 
             <div className={cServicesCSS.actions}>
 
-                <button onClick={() => handelBan(data)}><i className="fa-solid fa-trash-can"></i></button>
-                <button onClick={goToUpdate}><i className="fa-regular fa-pen-to-square"></i></button>
+                <button onClick={() => handelDeleteService(data)}><i className="fa-solid fa-trash-can"></i></button>
+                <button onClick={goToUpdateService}><i className="fa-regular fa-pen-to-square"></i></button>
 
             </div>
 

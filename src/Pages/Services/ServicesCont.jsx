@@ -23,7 +23,7 @@ export default function ServicesCont() {
 
         <div className={serCSS.add_pro}>
             <Link to={'add'}>
-                <motion.button whileTap={{scale : 0.95}}><i className="fa-solid fa-plus"></i> Add product</motion.button>
+                <motion.button whileTap={{scale : 0.95}}><i className="fa-solid fa-plus"></i> Add Service</motion.button>
             </Link>
         </div>
 

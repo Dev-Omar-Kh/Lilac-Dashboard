@@ -69,6 +69,8 @@ export default function AddPro() {
 
         } catch (error) {
             setErrMsg('Added error, Please try again');
+            console.log(error);
+            
         }
 
         setAddLoading(false);

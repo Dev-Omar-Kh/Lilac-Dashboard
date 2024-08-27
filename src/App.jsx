@@ -20,6 +20,8 @@ import Contact from './Pages/Contact/Contact';
 import './App.css';
 import OwnerRoute from './Protected-Route/OwnerRoute';
 import ResetPass from './Pages/Reset-Pass/ResetPass';
+import { Provider } from 'react-redux';
+import { Store } from './Redux/Store';
 
 const routes = createBrowserRouter([
 
@@ -66,11 +68,15 @@ export default function App() {
 
   return <React.Fragment>
 
-    <QueryClientProvider client={clientQuery}>
+    <Provider store={Store}>
 
-      <RouterProvider router={routes} />
+      <QueryClientProvider client={clientQuery}>
 
-    </QueryClientProvider>
+        <RouterProvider router={routes} />
+
+      </QueryClientProvider>
+
+    </Provider>
 
   </React.Fragment>
 

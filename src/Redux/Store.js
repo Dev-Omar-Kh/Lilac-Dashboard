@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productsReduce } from "./Products";
+import { productsReduce } from "./Search";
 
 export const Store = configureStore({
 

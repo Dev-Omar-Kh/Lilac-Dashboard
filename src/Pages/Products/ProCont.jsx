@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProductCard from './ProductCard';
 import axios from 'axios';
 import { useQuery } from 'react-query';
@@ -8,11 +8,13 @@ import localCSS from '../../Style/Local-style.module.css';
 import proCSS from '../../Style/cards.module.css';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchBar } from '../../Redux/Search';
 
 export default function ProCont() {
 
     const {searchWord} = useSelector(store => store.products);
+    const dispatch = useDispatch();
 
     const getProducts = async() => {
 
@@ -29,6 +31,18 @@ export default function ProCont() {
         filteredProducts = filteredProducts.filter(pro => pro.name.toLowerCase().includes(searchWord.toLowerCase()));
 
     }
+
+    useEffect(() => {
+
+        dispatch(searchBar({display : true}));
+
+        return () => {
+
+            dispatch(searchBar({display : null}));
+
+        }
+
+    } , [dispatch]);
 
     return <React.Fragment>
 
@@ -53,12 +67,12 @@ export default function ProCont() {
                     style={{
                         width : '100%' , height : '400px' , display : 'flex' ,
                         flexDirection : 'column' , alignItems : 'center' , justifyContent : 'center', gap : '10px' ,
-                        fontSize : '20px', fontWeight : '500' , color : 'var(--dark-color-1)'
+                        fontSize : '18px', fontWeight : '500' , color : 'var(--dark-color-1)'
                     }}
                 >
 
-                    <i style={{fontSize : '80px'}} className="fa-solid fa-triangle-exclamation"></i>
-                    <p>There is no product with this name.</p>
+                    <i style={{fontSize : '60px'}} className="fa-solid fa-triangle-exclamation"></i>
+                    <p>Product not found.</p>
 
                 </div>
             )}

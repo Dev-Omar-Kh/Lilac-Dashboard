@@ -62,7 +62,9 @@ export default function Header({clickNav}) {
 
                 {displaySearchBar || displaySearchBarServices ? <form onSubmit={stopSend} className={hCSS.form}>
 
-                    <input id='search' type="text" placeholder='Search for a product...'/>
+                    <input id='search' type="text" placeholder={
+                        displaySearchBar ? 'Search for a product...' : 'Search for a service...'
+                    }/>
                     <button type='submit'><i className="fa-solid fa-magnifying-glass"></i></button>
 
                 </form> : <span></span>}

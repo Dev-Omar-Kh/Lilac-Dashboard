@@ -32,7 +32,7 @@ export default function ServicesCont() {
 
         console.log(searchWordServices);
 
-        filteredServices = filteredServices.filter(pro => pro.name.toLowerCase().includes(searchWordServices.toLowerCase()));
+        filteredServices = filteredServices.filter(pro => pro.name.replace(/\s+/g, '').toLowerCase().includes(searchWordServices.replace(/\s+/g, '').toLowerCase()));
 
     }
 

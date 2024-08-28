@@ -82,8 +82,16 @@ export default function Login() {
                 error.email = 'Email is invalid';
             }
 
+            if(!values.email){
+                error.email = 'Email is required';
+            }
+
             if(values.password.length < 8){
-                error.password = 'The password must be more than 8 characters';
+                error.password = 'password must be more than 8 characters';
+            }
+
+            if(!values.password){
+                error.password = 'password is required';
             }
 
             return error;

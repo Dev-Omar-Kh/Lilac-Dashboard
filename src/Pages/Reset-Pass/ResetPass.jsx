@@ -92,7 +92,7 @@ export default function ResetPass() {
             }
 
             if(values.password !== values.confirmPassword){
-                error.confirmPassword = 'The new password must been matched'
+                error.confirmPassword = 'Password must been matched'
             }
 
             return error;
@@ -160,7 +160,7 @@ export default function ResetPass() {
                 <div className={formCSS.input_cont}>
 
                     <label htmlFor="oldPass">
-                        <span>Current Password : </span>
+                        <span>Current password : </span>
                         {formikObj.errors.oldPass && formikObj.touched.oldPass && 
                             <span className={formCSS.err_msg_label}>* {formikObj.errors.oldPass}</span>
                         }

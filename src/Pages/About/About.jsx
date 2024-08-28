@@ -165,7 +165,7 @@ export default function About() {
 
                     <div className={formCSS.fake_input}>
                         <i className="fa-regular fa-images"></i>
-                        <p>Add new main</p>
+                        <p>Add new image</p>
                     </div>
 
                 </label>

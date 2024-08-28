@@ -28,7 +28,7 @@ const routes = createBrowserRouter([
   {path : '/' , element : <Auth /> , children : [
 
     {path : '/' , element : <Password />},
-    {path : '/login' , element : <Login />},
+    {path : '/login' , element : <OwnerRoute><Login /></OwnerRoute>},
 
   ]},
 

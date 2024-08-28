@@ -9,7 +9,7 @@ import proCSS from '../../Style/cards.module.css';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchBar } from '../../Redux/Search';
+import { filterProduct, searchBar } from '../../Redux/Search';
 
 export default function ProCont() {
 
@@ -39,6 +39,7 @@ export default function ProCont() {
         return () => {
 
             dispatch(searchBar({display : null}));
+            dispatch(filterProduct({name : null}));
 
         }
 

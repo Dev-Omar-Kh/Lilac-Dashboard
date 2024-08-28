@@ -155,7 +155,7 @@ export default function Password() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eyeSlash} alt="eyeSlash" 
+                                        src={eye} alt="eyeSlash" 
                                     />
                                 </AnimatePresence>
                             }
@@ -165,7 +165,7 @@ export default function Password() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eye} alt="eye" 
+                                        src={eyeSlash} alt="eye" 
                                     />
                                 </AnimatePresence>
                             }

@@ -10,6 +10,7 @@ import localCSS from '../../Style/Local-style.module.css';
 
 import eye from '../../Images/SVG/eye-icon-svg.svg';
 import eyeSlash from '../../Images/SVG/eye-slash-icon-svg.svg';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResetPass() {
 
@@ -18,8 +19,11 @@ export default function ResetPass() {
     const [successMsg, setSuccessMsg] = useState(null);
     const [addLoading, setAddLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     const values = {
 
+        oldPass : '',
         password : '',
         confirmPassword : '',
 
@@ -39,9 +43,10 @@ export default function ResetPass() {
 
             if(data.success){
                 setSuccessMsg('Password reseted successfully');
-            }
-            else{
-                setErrMsg('reseted failed, Please try again');
+
+                setTimeout(() => {
+                    navigate('/');
+                }, 3500);
             }
 
         } catch (error) {
@@ -66,12 +71,28 @@ export default function ResetPass() {
 
             setErrMsg(null);
 
+            if(values.oldPass.length < 8){
+                error.oldPass = 'The old password must be more than 8 characters'
+            }
+
+            if(!values.oldPass.length){
+                error.oldPass = 'The old password is required'
+            }
+
             if(values.password.length < 8){
-                error.password = 'The password must be more than 8 characters'
+                error.password = 'The new password must be more than 8 characters'
+            }
+
+            if(!values.password.length){
+                error.password = 'The new password is required'
+            }
+
+            if(values.password === values.oldPass){
+                error.password = 'This password is already used'
             }
 
             if(values.password !== values.confirmPassword){
-                error.confirmPassword = 'The password must been matched'
+                error.confirmPassword = 'The new password must been matched'
             }
 
             return error;
@@ -84,11 +105,13 @@ export default function ResetPass() {
 
     const [passwordShowRegister1, setPasswordShowRegister1] = useState(false);
     const [passwordShowRegister2, setPasswordShowRegister2] = useState(false);
+    const [passwordShowRegister3, setPasswordShowRegister3] = useState(false);
 
     useEffect(() => {
 
         const passwordShowRegister1 = document.getElementById('showPasswordRegister1');
         const passwordShowRegister2 = document.getElementById('showPasswordRegister2');
+        const passwordShowRegister3 = document.getElementById('showPasswordRegister3');
 
         passwordShowRegister1.onclick = () => {
 
@@ -102,7 +125,13 @@ export default function ResetPass() {
 
         }
 
-    } , [passwordShowRegister1 , passwordShowRegister2]);
+        passwordShowRegister3.onclick = () => {
+
+            setPasswordShowRegister3(prevState => !prevState);
+
+        }
+
+    } , [passwordShowRegister1 , passwordShowRegister2 , passwordShowRegister3]);
 
     const viewEye = {
 
@@ -130,6 +159,53 @@ export default function ResetPass() {
 
                 <div className={formCSS.input_cont}>
 
+                    <label htmlFor="oldPass">
+                        <span>Current Password : </span>
+                        {formikObj.errors.oldPass && formikObj.touched.oldPass && 
+                            <span className={formCSS.err_msg_label}>* {formikObj.errors.oldPass}</span>
+                        }
+                    </label>
+
+                    <input
+                        id='oldPass'
+                        type={passwordShowRegister3 ? "text" : "password"} placeholder="Enter current password"
+                        onChange={formikObj.handleChange}
+                        onBlur={formikObj.handleBlur}
+                        value={formikObj.values.oldPass}
+                    />
+
+                    <div id='showPasswordRegister3' className={formCSS.eye_cont}>
+
+                        <div className={formCSS.eyes}>
+
+                            {passwordShowRegister3 && 
+                                <AnimatePresence>
+                                    <motion.img 
+                                        variants={viewEye} initial='hidden' animate='visible' 
+                                        exit='hidden' className={formCSS.icon_cont} 
+                                        src={eye} alt="eyeSlash" 
+                                    />
+                                </AnimatePresence>
+                            }
+
+                            {!passwordShowRegister3 &&
+                                <AnimatePresence>
+                                    <motion.img 
+                                        variants={viewEye} initial='hidden' animate='visible' 
+                                        exit='hidden' className={formCSS.icon_cont} 
+                                        src={eyeSlash} alt="eye" 
+                                    />
+                                </AnimatePresence>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className={formCSS.input_cont}>
+
                     <label htmlFor="password">
                         <span>Password : </span>
                         {formikObj.errors.password && formikObj.touched.password && 
@@ -139,7 +215,7 @@ export default function ResetPass() {
 
                     <input
                         id='password'
-                        type={passwordShowRegister1 ? "text" : "password"} placeholder="Enter password"
+                        type={passwordShowRegister1 ? "text" : "password"} placeholder="Enter new password"
                         onChange={formikObj.handleChange}
                         onBlur={formikObj.handleBlur}
                         value={formikObj.values.password}
@@ -154,7 +230,7 @@ export default function ResetPass() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eyeSlash} alt="eyeSlash" 
+                                        src={eye} alt="eyeSlash" 
                                     />
                                 </AnimatePresence>
                             }
@@ -164,7 +240,7 @@ export default function ResetPass() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eye} alt="eye" 
+                                        src={eyeSlash} alt="eye" 
                                     />
                                 </AnimatePresence>
                             }
@@ -186,7 +262,7 @@ export default function ResetPass() {
 
                     <input
                         id='confirmPassword'
-                        type={passwordShowRegister2 ? "text" : "password"} placeholder="Enter confirmPassword"
+                        type={passwordShowRegister2 ? "text" : "password"} placeholder="Confirm new Password"
                         onChange={formikObj.handleChange}
                         onBlur={formikObj.handleBlur}
                         value={formikObj.values.confirmPassword}
@@ -201,7 +277,7 @@ export default function ResetPass() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eyeSlash} alt="eyeSlash" 
+                                        src={eye} alt="eyeSlash" 
                                     />
                                 </AnimatePresence>
                             }
@@ -211,7 +287,7 @@ export default function ResetPass() {
                                     <motion.img 
                                         variants={viewEye} initial='hidden' animate='visible' 
                                         exit='hidden' className={formCSS.icon_cont} 
-                                        src={eye} alt="eye" 
+                                        src={eyeSlash} alt="eye" 
                                     />
                                 </AnimatePresence>
                             }
@@ -221,7 +297,6 @@ export default function ResetPass() {
                     </div>
 
                 </div>
-
 
                 <div className={formCSS.btn_cont}>
 

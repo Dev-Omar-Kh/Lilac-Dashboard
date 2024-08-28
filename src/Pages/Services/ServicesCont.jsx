@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 import localCSS from '../../Style/Local-style.module.css';
 import serCSS from '../../Style/cards.module.css';
 import ServicesCard from './ServicesCard';
-import { searchBarServices } from '../../Redux/Search';
+import { filterServices, searchBarServices } from '../../Redux/Search';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function ServicesCont() {
@@ -31,7 +31,7 @@ export default function ServicesCont() {
     if(searchWordServices && !isLoading){
 
         console.log(searchWordServices);
-        
+
         filteredServices = filteredServices.filter(pro => pro.name.toLowerCase().includes(searchWordServices.toLowerCase()));
 
     }
@@ -43,6 +43,7 @@ export default function ServicesCont() {
         return () => {
 
             dispatch(searchBarServices({display : null}));
+            dispatch(filterServices({nameS : null}));
 
         }
 

@@ -8,7 +8,7 @@ export default function Footer() {
 
         <div className={fCSS.container}>
 
-            <a href="www.google.com">© Developed by The Gate 1</a>
+            <a href="https://thegate1.com/ar_EG" target='_blank' rel="noreferrer">© Developed by The Gate 1</a>
 
         </div>
 

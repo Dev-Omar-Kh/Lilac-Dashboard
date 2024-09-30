@@ -51,7 +51,7 @@ export default function Password() {
 
                     navigate('/dashboard/services');
 
-                } , 3500)
+                } , 3500);
 
             }
             else{

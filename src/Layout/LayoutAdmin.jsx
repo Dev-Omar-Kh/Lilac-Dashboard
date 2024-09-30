@@ -4,6 +4,7 @@ import SideBar from '../Components/Sidebar/SideBar'
 import Header from '../Components/Header/Header'
 
 import lCSS from './layout.module.css';
+import Footer from '../Components/Footer/Footer';
 
 export default function Layout() {
 
@@ -48,6 +49,12 @@ export default function Layout() {
                         </div>
 
                     </div>
+
+                </div>
+
+                <div className={lCSS.footer}>
+
+                    <Footer />
 
                 </div>
 

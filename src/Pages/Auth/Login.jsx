@@ -74,7 +74,7 @@ export default function Login() {
 
         validate : (values) => {
 
-            setErrMsg(null)
+            setErrMsg(null);
 
             const error = {}
 
